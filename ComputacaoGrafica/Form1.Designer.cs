@@ -32,8 +32,8 @@
             this.labelResultado = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.imagem = new System.Windows.Forms.PictureBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtPTE = new System.Windows.Forms.TextBox();
             this.txtPO = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,7 +47,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.Metodo = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtPTE = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.imagem)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -111,6 +110,14 @@
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pontos";
+            // 
+            // txtPTE
+            // 
+            this.txtPTE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPTE.Location = new System.Drawing.Point(242, 56);
+            this.txtPTE.Name = "txtPTE";
+            this.txtPTE.Size = new System.Drawing.Size(100, 22);
+            this.txtPTE.TabIndex = 18;
             // 
             // txtPO
             // 
@@ -246,6 +253,7 @@
             this.Metodo.Name = "Metodo";
             this.Metodo.Size = new System.Drawing.Size(165, 24);
             this.Metodo.TabIndex = 18;
+            this.Metodo.SelectedIndexChanged += new System.EventHandler(this.Metodo_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -256,14 +264,6 @@
             this.label9.Size = new System.Drawing.Size(95, 17);
             this.label9.TabIndex = 17;
             this.label9.Text = "Operação     :";
-            // 
-            // txtPTE
-            // 
-            this.txtPTE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPTE.Location = new System.Drawing.Point(242, 56);
-            this.txtPTE.Name = "txtPTE";
-            this.txtPTE.Size = new System.Drawing.Size(100, 22);
-            this.txtPTE.TabIndex = 18;
             // 
             // Form1
             // 
@@ -298,7 +298,6 @@
         private System.Windows.Forms.Label labelResultado;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.PictureBox imagem;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;

@@ -236,30 +236,17 @@ namespace ComputacaoGrafica
             return C;
         }
 
+        private void Metodo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Metodo.Text;
+        }
+
+
         //Falta implementar a função para apresentar o resultado na labelResultado
         public void ApresentarResultado(int[,] Result)
         {
-            //string resultado = "";
-
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    for (int j = 0; j < 1; j++)
-            //    {
-            //        resultado += String.Format(@"[{0},{1}] {2}"
-            //                                    , i
-            //                                    , j
-            //                                    , Result[i, j]);
-            //        resultado += "\n";
-
-            //        areaDesenho.SetPixel(i, j, corPreenche);
-            //    }
-            //}
-
             areaDesenho.SetPixel(Result[0, 0], Result[1, 0], corPreenche);
 
-            //labelResultado.Text = resultado;
-
-            //areaDesenho.SetPixel(x, y, corPreenche);
             imagem.Image = areaDesenho;
 
         }
