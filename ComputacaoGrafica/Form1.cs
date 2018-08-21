@@ -11,6 +11,19 @@ namespace ComputacaoGrafica
 {
     public partial class Form1 : Form
     {
+
+        public int[,] Resultado = new int[3, 3];
+        public double[,] ResultRotacao = new double[3, 3];
+        public int[,] MatrizTranslacao = new int[3, 3] { { 1, 0, 9999 }, { 0, 1, 9999 }, { 0, 0, 1 } };
+        public int[,] MatrizEscala = new int[3, 3] { { 9999, 0, 0 }, { 0, 9999, 0 }, { 0, 0, 1 } };
+        public int[,] MatrizReflexaoX = new int[3, 3] { { 1, 0, 0 }, { 0, -1, 0 }, { 0, 0, 1 } };
+        public int[,] MatrizReflexaoY = new int[3, 3] { { -1, 0, 0 }, { 0, 1, 0 }, { 0, 0, 1 } };
+        public int[,] MatrizReflexaoOrigem = new int[3, 3] { { -1, 0, 0 }, { 0, -1, 0 }, { 0, 0, 1 } };
+        public int[,] MatrizCisalhamentoVertical = new int[3, 3] { { 1, 0, 0 }, { 9999, 1, 0 }, { 0, 0, 1 } };
+        public int[,] MatrizCisalhamentoHorizontal = new int[3, 3] { { 1, 9999, 0 }, { 0, 1, 0 }, { 0, 0, 1 } };
+        public double[,] MatrizRotacao = new double[3, 3] { { 9999, 8888, 0 }, { 8888, 9999, 0 }, { 0, 0, 1 } };
+        public string x_1, y_1, x_2, y_2 = "";
+
         Bitmap areaDesenho;
         Color corPreenche;
 
@@ -20,42 +33,43 @@ namespace ComputacaoGrafica
 
             areaDesenho = new Bitmap(imagem.Size.Width, imagem.Size.Height);
             corPreenche = Color.Black;
+            x_1 = "";
+            y_1 = "";
+            x_2 = "";
+            y_2 = "";
         }
-
-        int[,] Resultado = new int[3, 3];
-        double[,] ResultRotacao = new double[3, 3];
-        int[,] MatrizTranslacao = new int[3, 3] { { 1, 0, 9999 }, { 0, 1, 9999 }, { 0, 0, 1 } };
-        int[,] MatrizEscala = new int[3, 3] { { 9999, 0, 0 }, { 0, 9999, 0 }, { 0, 0, 1 } };
-        int[,] MatrizReflexaoX = new int[3, 3] { { 1, 0, 0 }, { 0, -1, 0 }, { 0, 0, 1 } };
-        int[,] MatrizReflexaoY = new int[3, 3] { { -1, 0, 0 }, { 0, 1, 0 }, { 0, 0, 1 } };
-        int[,] MatrizReflexaoOrigem = new int[3, 3] { { -1, 0, 0 }, { 0, -1, 0 }, { 0, 0, 1 } };
-        int[,] MatrizCisalhamentoVertical = new int[3, 3] { { 1, 0, 0 }, { 9999, 1, 0 }, { 0, 0, 1 } };
-        int[,] MatrizCisalhamentoHorizontal = new int[3, 3] { { 1, 9999, 0 }, { 0, 1, 0 }, { 0, 0, 1 } };
-        double[,] MatrizRotacao = new double[3, 3] { { 9999, 8888, 0 }, { 8888, 9999, 0 }, { 0, 0, 1 } };
 
         private void btnCalcular_Click(object sender, EventArgs e)
         {
-            if (x1.Text == "" || y1.Text == "" || anguloText.Text == "" || x2.Text == "" || y2.Text == "" || forceText.Text == "")
-            {
-                MessageBox.Show("Favor informar todos os campos !");
-                return;
-            }
+            //if (x1.Text == "" || y1.Text == "" || anguloText.Text == "" || x2.Text == "" || y2.Text == "" || forceText.Text == "")
+            //{
+            //    MessageBox.Show("Favor informar todos os campos !");
+            //    return;
+            //}
+
+            string[] PontoOrigem = txtPO.Text.Split(',');
+            x_1 = PontoOrigem[0];
+            y_1 = PontoOrigem[1];
+
+            string[] PontoTrasnE = txtPTE.Text.Split(',');
+            x_2 = PontoTrasnE[0];
+            y_2 = PontoTrasnE[1];
+
 
             int[,] Coef = new int[3, 1];
-            Coef[0, 0] = int.Parse(x1.Text);
-            Coef[1, 0] = int.Parse(y1.Text);
+            Coef[0, 0] = int.Parse(x_1);
+            Coef[1, 0] = int.Parse(y_1);
             Coef[2, 0] = 1;
 
-            //Esta dando erro nessa conversão ao executar o codigo
             double cos = Math.Cos(Double.Parse(anguloText.Text));
             double sen = Math.Sin(Convert.ToDouble(anguloText.Text));
 
-            int T1 = Convert.ToInt32(x2.Text);
-            int T2 = Convert.ToInt32(y2.Text);
+            int T1 = Convert.ToInt32(x_2);
+            int T2 = Convert.ToInt32(y_2);
             int F = Convert.ToInt32(forceText.Text);
 
-            areaDesenho.SetPixel(int.Parse(x1.Text), int.Parse(y1.Text), corPreenche);
-            areaDesenho.SetPixel(int.Parse(x2.Text), int.Parse(y2.Text), corPreenche);
+            areaDesenho.SetPixel(int.Parse(x_1), int.Parse(y_1), corPreenche);
+            areaDesenho.SetPixel(int.Parse(x_2), int.Parse(y_2), corPreenche);
 
             switch (Metodo.Text.ToString())
             {
@@ -255,5 +269,9 @@ namespace ComputacaoGrafica
             //A impresão da função de rotação recebe double por causa das operaçoes com seno e cosseno
         }
 
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
